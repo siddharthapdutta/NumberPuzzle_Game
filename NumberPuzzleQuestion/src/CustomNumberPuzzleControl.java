@@ -38,10 +38,20 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 		Button buttonClicked = game.getButtonClicked();
 		Button[] buttons = game.getButtons();
 		
-		//Your logic here		
-		
-		return emptyCellId;
+		// Obtaining ID of clicked button to update empty cell ID
+		int buttonClickedId = 0;
+		int counter = 0;
+		for (Button button : buttons) {
+			if (button.equals(buttonClicked)) {
+				buttonClickedId = counter;
+				break;
+			}
+			counter++;
+		}
+		game.setEmptyCellId(buttonClickedId);
 
+		swapButton(buttons[emptyCellId], buttons[buttonClickedId]);
+		return buttonClickedId;
 	}
 	public int[] getRandomNumbersForGrid() {
 		int arr[] = new int[15];
