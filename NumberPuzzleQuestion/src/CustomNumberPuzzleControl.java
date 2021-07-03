@@ -53,6 +53,7 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 		int diff = Math.abs(buttonClickedId - emptyCellId);
 		if (diff == 1 || diff == 4) {
 			swapButton(buttons[emptyCellId], buttons[buttonClickedId]);
+			emptyCellId = buttonClickedId;
 			game.setEmptyCellId(emptyCellId);
 		}
 
@@ -74,9 +75,13 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 	{
 		boolean winner = true;
 		
-		// Your Logic here
-		getIntegerArrayOfButtonIds(buttons);
-
+		int arr[] = getIntegerArrayOfButtonIds(buttons);
+		for (int i = 0; i < 15; i++) {
+			if (arr[i] != i+1) {
+				winner = false;
+				break;
+			}
+		}
 		return winner;
 	}
 }
