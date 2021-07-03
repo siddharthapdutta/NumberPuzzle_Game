@@ -48,10 +48,15 @@ class CustomNumberPuzzleControl extends NumberPuzzleControl {
 			}
 			counter++;
 		}
-		game.setEmptyCellId(buttonClickedId);
+		
+		// Check if button is okay to swap
+		int diff = Math.abs(buttonClickedId - emptyCellId);
+		if (diff == 1 || diff == 4) {
+			swapButton(buttons[emptyCellId], buttons[buttonClickedId]);
+			game.setEmptyCellId(emptyCellId);
+		}
 
-		swapButton(buttons[emptyCellId], buttons[buttonClickedId]);
-		return buttonClickedId;
+		return emptyCellId;
 	}
 	public int[] getRandomNumbersForGrid() {
 		int arr[] = new int[15];
